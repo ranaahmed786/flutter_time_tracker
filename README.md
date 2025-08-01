@@ -41,29 +41,30 @@ The ChronoTracker application features a professional interface designed with Ma
   </tr>
   <tr>
     <td>
-      <img src="screenshots/projects-screen.png" alt="Projects Overview" width="200" height="400"/>
+      <img src="https://github.com/user-attachments/assets/8b4a23d0-2810-47bd-9ce5-1c6ba62271fc" alt="Projects Overview" width="350" height="550"/>
     </td>
     <td>
-      <img src="screenshots/task-logs-screen.png" alt="Task Logging" width="200" height="400"/>
+      <img src="https://github.com/user-attachments/assets/57c002e9-d252-4190-b844-aa5a4a018a36" width="350" height="550"/>
     </td>
     <td>
-      <img src="screenshots/new-task-screen.png" alt="New Task Entry" width="200" height="400"/>
+      <img src="https://github.com/user-attachments/assets/7cdeb28c-ef9d-4f79-8811-f73455fe921d" alt="New Task Entry" width="350" height="550"/>
     </td>
   </tr>
   <tr>
-    <td><strong>Analytics Dashboard</strong></td>
+    <td><strong>Side Drawer</strong></td>
     <td><strong>Settings</strong></td>
     <td><strong>Dark Theme</strong></td>
   </tr>
+
   <tr>
     <td>
-      <img src="screenshots/analytics-screen.png" alt="Analytics Dashboard" width="200" height="400"/>
+      <img src="https://github.com/user-attachments/assets/72c98a8b-c42f-4d64-a7f5-633caa76221f" alt="Drawer" width="350" height="550"/>
     </td>
     <td>
-      <img src="screenshots/settings-screen.png" alt="Settings" width="200" height="400"/>
+      <img src="https://github.com/user-attachments/assets/61357689-a42e-4c76-9dd8-e9de7eb73119" alt="Settings" width="350" height="550"/>
     </td>
     <td>
-      <img src="screenshots/dark-theme-screen.png" alt="Dark Theme" width="200" height="400"/>
+      <img src="https://github.com/user-attachments/assets/b287dd92-08b8-4e0d-b8a8-1d44c8704bb2" alt="Dark Theme" width="350" height="550"/>
     </td>
   </tr>
 </table>
