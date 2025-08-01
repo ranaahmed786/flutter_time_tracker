@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_time_tracker/models/project.dart';
+import 'package:intl/intl.dart';
+
+final dateFormater = DateFormat.yMd();
 
 class ProjectListCard extends StatelessWidget {
   const ProjectListCard({super.key, required this.project});
@@ -19,7 +22,7 @@ class ProjectListCard extends StatelessWidget {
         subtitle: Text(
           'Total Time: ${project.totalTimeSpending.inHours} hours',
         ),
-        trailing: Text('Created At: ${project.createdAt}'),
+        trailing: Text('Created At: ${dateFormater.format(project.createdAt)}'),
       ),
     );
   }

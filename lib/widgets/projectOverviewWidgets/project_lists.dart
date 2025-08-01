@@ -35,7 +35,7 @@ class _ProjectListsState extends ConsumerState<ProjectLists> {
   Widget build(BuildContext context) {
     final projects = ref.watch(projectListProvider);
     return SizedBox(
-      height: MediaQuery.of(context).size.height * 0.3,
+      height: MediaQuery.of(context).size.height * 0.2,
       child: ListView.builder(
         itemCount: projects.length,
         itemBuilder: (context, index) {

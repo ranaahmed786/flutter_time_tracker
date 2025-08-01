@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_time_tracker/widgets/bottom_adding_button.dart';
-import 'package:flutter_time_tracker/widgets/chart/chart.dart';
+import 'package:flutter_time_tracker/widgets/projectOverviewWidgets/project_overview_stats.dart';
 import 'package:flutter_time_tracker/widgets/projectOverviewWidgets/project_adding_dialog.dart';
 import 'package:flutter_time_tracker/widgets/projectOverviewWidgets/project_lists.dart';
 
@@ -16,13 +16,14 @@ class ProjectOverviewScreen extends StatelessWidget {
   }
 
   const ProjectOverviewScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: Column(
         children: [
-          Chart(),
+          const ProjectOverviewStats(),
           const SizedBox(height: 8),
           Align(
             alignment: AlignmentDirectional.topStart,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_time_tracker/screens/project_overview_screen.dart';
 import 'package:flutter_time_tracker/screens/task_log_screen.dart';
+import 'package:flutter_time_tracker/widgets/app_main_drawer.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -29,8 +30,23 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('ChronoTracker')),
-      drawer: Drawer(),
+      appBar: AppBar(
+        title: (currentIndex == 0)
+            ? Text(
+                'Project Overview',
+                style: Theme.of(
+                  context,
+                ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
+              )
+            : Text(
+                'Task Logs',
+                style: Theme.of(
+                  context,
+                ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
+              ),
+        centerTitle: true,
+      ),
+      drawer: const AppMainDrawer(),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: currentIndex,
         onTap: (index) {

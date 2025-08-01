@@ -10,7 +10,7 @@ class TasksList extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final tasks = ref.watch(taskListProvider);
     return SizedBox(
-      height: 300,
+      height: MediaQuery.of(context).size.height * 0.2,
       child: ListView.builder(
         itemCount: tasks.length,
         itemBuilder: (context, index) {

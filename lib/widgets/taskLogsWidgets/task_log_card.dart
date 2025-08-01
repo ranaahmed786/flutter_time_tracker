@@ -40,7 +40,12 @@ class TaskLogCard extends StatelessWidget {
         children: [
           Expanded(
             child: ListTile(
-              title: Text(taskName),
+              title: Text(
+                taskName,
+                style: Theme.of(
+                  context,
+                ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
+              ),
               subtitle: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [

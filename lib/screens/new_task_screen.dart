@@ -41,12 +41,12 @@ class _NewTaskScreenState extends ConsumerState<NewTaskScreen> {
   void _onSubmit() {
     if (_formKey.currentState?.validate() ?? false) {
       _formKey.currentState?.save();
-      final Projects = ref.read(projectListProvider);
+      final projects = ref.read(projectListProvider);
       final time = ref.read(timeSpentProvider);
       final newTask = Task(
-        ofProject: Projects.firstWhere(
-          (project) => project.id == _selectedDropDownValue,
-        ).name,
+        ofProject: projects
+            .firstWhere((project) => project.id == _selectedDropDownValue)
+            .name,
         date: _selectedDate ?? DateTime.now(),
         projectID: _selectedDropDownValue!,
         description: selectedTaskTitle ?? 'description not provided',
@@ -64,93 +64,101 @@ class _NewTaskScreenState extends ConsumerState<NewTaskScreen> {
 
   @override
   Widget build(BuildContext context) {
+    double keyboardHeight = MediaQuery.of(context).viewInsets.bottom;
     return Scaffold(
       appBar: AppBar(title: const Text('Add Entry')),
-      body: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Form(
-          key: _formKey,
-          child: Column(
-            children: [
-              TaskDropdown(
-                selectedDropDownValue: _selectedDropDownValue,
-                onChanged: (value) {
-                  setState(() {
-                    _selectedDropDownValue = value;
-                  });
-                },
-              ),
-              const SizedBox(height: 16),
-              TextFormField(
-                onSaved: (newValue) => selectedTaskTitle = newValue,
-                decoration: InputDecoration(
-                  labelText: 'Task Name',
-                  border: OutlineInputBorder(
+      resizeToAvoidBottomInset: true,
+      body: SizedBox(
+        height: MediaQuery.of(context).size.height - keyboardHeight,
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.all(16),
+          child: Form(
+            key: _formKey,
+            child: Column(
+              children: [
+                TaskDropdown(
+                  selectedDropDownValue: _selectedDropDownValue,
+                  onChanged: (value) {
+                    setState(() {
+                      _selectedDropDownValue = value;
+                    });
+                  },
+                ),
+                const SizedBox(height: 16),
+                TextFormField(
+                  onSaved: (newValue) => selectedTaskTitle = newValue,
+                  decoration: InputDecoration(
+                    labelText: 'Task Name',
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(16),
+                    ),
+                  ),
+                  validator: (value) => value == null || value.isEmpty
+                      ? 'Please enter a task name'
+                      : null,
+                ),
+                const SizedBox(height: 16),
+                Text(
+                  'Time Spent',
+                  style: Theme.of(
+                    context,
+                  ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(height: 8),
+                CupertinoTimepickers(),
+                const SizedBox(height: 16),
+                Text(
+                  'Date',
+                  style: Theme.of(
+                    context,
+                  ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(height: 8),
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.grey),
                     borderRadius: BorderRadius.circular(16),
                   ),
-                ),
-                validator: (value) => value == null || value.isEmpty
-                    ? 'Please enter a task name'
-                    : null,
-              ),
-              const SizedBox(height: 16),
-              Text(
-                'Time Spent',
-                style: Theme.of(
-                  context,
-                ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(height: 8),
-              CupertinoTimepickers(),
-              const SizedBox(height: 16),
-              Text(
-                'Date',
-                style: Theme.of(
-                  context,
-                ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(height: 8),
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                decoration: BoxDecoration(
-                  border: Border.all(color: Colors.grey),
-                  borderRadius: BorderRadius.circular(16),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      _selectedDate != null
-                          ? dateFormatter.format(_selectedDate!)
-                          : 'Select Date',
-                      style: const TextStyle(fontSize: 17),
-                    ),
-                    IconButton(
-                      onPressed: _setSelectedDate,
-                      icon: const Icon(Icons.calendar_month_outlined, size: 26),
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(height: 16),
-              TextFormField(
-                onSaved: (newValue) => notes = newValue,
-                decoration: InputDecoration(
-                  labelText: 'Notes (Optional)',
-                  alignLabelWithHint: true,
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(16),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        _selectedDate != null
+                            ? dateFormatter.format(_selectedDate!)
+                            : 'Select Date',
+                        style: const TextStyle(fontSize: 17),
+                      ),
+                      IconButton(
+                        onPressed: _setSelectedDate,
+                        icon: const Icon(
+                          Icons.calendar_month_outlined,
+                          size: 26,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-                maxLines: 5,
-              ),
-              const Spacer(),
-              BottomAddingButton(
-                onPressed: _onSubmit,
-                label: 'Add Task',
-                icon: Icons.add,
-              ),
-            ],
+                const SizedBox(height: 16),
+                TextFormField(
+                  onSaved: (newValue) => notes = newValue,
+                  decoration: InputDecoration(
+                    labelText: 'Notes (Optional)',
+                    alignLabelWithHint: true,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(16),
+                    ),
+                  ),
+                  maxLines: 5,
+                ),
+                const SizedBox(height: 16),
+                BottomAddingButton(
+                  onPressed: _onSubmit,
+                  label: 'Add Task',
+                  icon: Icons.add,
+                ),
+              ],
+            ),
           ),
         ),
       ),
