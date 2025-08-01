@@ -6,8 +6,16 @@ class CustomBarChart extends StatelessWidget {
 
   const CustomBarChart({super.key, required this.data});
 
-  @override
-  Widget build(BuildContext context) {
+  Widget content(BuildContext context) {
+    if (data.isEmpty) {
+      return const Center(
+        child: Text(
+          'No data available add entries to see the chart',
+          textAlign: TextAlign.center,
+          style: TextStyle(fontSize: 16, color: Colors.grey),
+        ),
+      );
+    }
     return BarChart(
       BarChartData(
         alignment: BarChartAlignment.spaceAround,
@@ -73,6 +81,11 @@ class CustomBarChart extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return content(context);
   }
 }
 

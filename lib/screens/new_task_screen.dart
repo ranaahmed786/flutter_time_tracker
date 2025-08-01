@@ -49,7 +49,7 @@ class _NewTaskScreenState extends ConsumerState<NewTaskScreen> {
             .name,
         date: _selectedDate ?? DateTime.now(),
         projectID: _selectedDropDownValue!,
-        description: selectedTaskTitle ?? 'description not provided',
+        description: notes!,
         duration: time,
         name: selectedTaskTitle!,
       );

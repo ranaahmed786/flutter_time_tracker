@@ -5,10 +5,17 @@ import 'package:flutter_time_tracker/widgets/taskLogsWidgets/task_log_card.dart'
 
 class TasksList extends ConsumerWidget {
   const TasksList({super.key});
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget content(BuildContext context, WidgetRef ref) {
     final tasks = ref.watch(taskListProvider);
+    if (tasks.isEmpty) {
+      return const Center(
+        child: Text(
+          'No tasks available.',
+          textAlign: TextAlign.center,
+          style: TextStyle(fontSize: 16, color: Colors.grey),
+        ),
+      );
+    }
     return SizedBox(
       height: MediaQuery.of(context).size.height * 0.2,
       child: ListView.builder(
@@ -54,5 +61,10 @@ class TasksList extends ConsumerWidget {
         },
       ),
     );
+  }
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    return content(context, ref);
   }
 }

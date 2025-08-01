@@ -32,6 +32,54 @@ class TaskLogCard extends StatelessWidget {
     }
   }
 
+  void onPressed(BuildContext context) {
+    // Handle the onPressed action, e.g., show a dialog with task details
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text(taskName),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Project: $ofProject',
+                style: Theme.of(
+                  context,
+                ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
+              ),
+              Text(
+                'Time Taken: ${_formatDuration(timeTaken)}',
+                style: Theme.of(
+                  context,
+                ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.bold),
+              ),
+              Text(
+                'Date: ${dateformater.format(date)}',
+                style: Theme.of(
+                  context,
+                ).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.bold),
+              ),
+              Text(
+                'Description: $description',
+                style: Theme.of(
+                  context,
+                ).textTheme.bodySmall?.copyWith(fontWeight: FontWeight.bold),
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: const Text('Close'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -59,7 +107,7 @@ class TaskLogCard extends StatelessWidget {
           ),
           IconButton(
             icon: const Icon(Icons.description_outlined),
-            onPressed: () {},
+            onPressed: () => onPressed(context),
           ),
         ],
       ),
